@@ -1,0 +1,10 @@
+{
+  "name": "mani-dex2-root",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
