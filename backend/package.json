@@ -4,11 +4,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "build": "tsc -p tsconfig.build.json",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml}\"",
+    "vercel-build": "npm run build"
   },
   "keywords": [],
   "author": "",
