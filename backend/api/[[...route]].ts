@@ -1,13 +1,21 @@
-import app from "../src/app";
+import app from "../src/app.js";
+import type { IncomingMessage, ServerResponse } from "http";
 
-export default function handler(req: any, res: any) {
-  if (typeof req.url === "string") {
-    if (req.url === "/api") {
+export default function handler(
+  req: IncomingMessage & { url?: string },
+  res: ServerResponse
+) {
+  const originalUrl = req.url ?? "/";
+  if (typeof originalUrl === "string") {
+    if (originalUrl === "/api") {
       req.url = "/";
-    } else if (req.url.startsWith("/api/")) {
-      req.url = req.url.slice(4);
+    } else if (originalUrl.startsWith("/api/")) {
+      req.url = originalUrl.slice(4);
     }
   }
-  return (app as unknown as (req: any, res: any) => void)(req, res);
+  return (app as unknown as (req: IncomingMessage, res: ServerResponse) => void)(
+    req,
+    res
+  );
 }
 
